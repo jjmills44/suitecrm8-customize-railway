@@ -16,9 +16,9 @@ RUN echo "display_errors=Off" >> /usr/local/etc/php/conf.d/custom.ini \
 
 WORKDIR /usr/src
 
-RUN wget -O suitecrm.zip https://github.com/salesagility/SuiteCRM-Core/releases/download/v8.10.0/SuiteCRM-8.10.0.zip \
-    && unzip suitecrm.zip \
-    && mv SuiteCRM-8.10.0 suitecrm \
+RUN mkdir suitecrm \
+    && wget -O suitecrm.zip https://github.com/salesagility/SuiteCRM-Core/releases/download/v8.10.0/SuiteCRM-8.10.0.zip \
+    && unzip suitecrm.zip -d suitecrm \
     && rm suitecrm.zip
 
 COPY entrypoint.sh /entrypoint.sh
