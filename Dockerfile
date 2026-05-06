@@ -3,8 +3,10 @@ FROM php:8.2-apache
 RUN apt-get update && apt-get install -y \
     unzip wget cron git libzip-dev libpng-dev libjpeg-dev libfreetype6-dev \
     libicu-dev libxml2-dev libonig-dev default-mysql-client \
+    libc-client-dev libkrb5-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install mysqli pdo pdo_mysql zip intl mbstring soap gd opcache \
+    && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
+    && docker-php-ext-install mysqli pdo pdo_mysql zip intl mbstring soap gd opcache imap \
     && a2dismod mpm_event \
     && a2enmod mpm_prefork rewrite headers \
     && rm -rf /var/lib/apt/lists/*
