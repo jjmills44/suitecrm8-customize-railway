@@ -1,9 +1,9 @@
-FROM php:8.2-apache
+FROM php:8.2-apache-bookworm
 
 RUN apt-get update && apt-get install -y \
     unzip wget cron git libzip-dev libpng-dev libjpeg-dev libfreetype6-dev \
     libicu-dev libxml2-dev libonig-dev default-mysql-client \
-    libc-client-dev libkrb5-dev \
+    libc-client2007e-dev libkrb5-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-install mysqli pdo pdo_mysql zip intl mbstring soap gd opcache imap \
